@@ -1,0 +1,183 @@
+
+@font-face {
+  font-family: Pixellari;
+  src: url("./assets/fonts/Pixellari.ttf") format("truetype");
+  font-weight: normal;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Pixellari";
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: unset;
+}
+a:hover {
+  color: unset;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.container{
+  padding: 0rem 5%;
+}
+main {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('assets/img/back.jpg');
+  background-size: cover;
+}
+.page-title{
+  font-size: 4rem;
+  margin-left: -6px;
+}
+.primary-text{
+  color: yellow;
+}
+.blid-image {
+  width: 414px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+.subtitle {
+  font-weight: bold;
+}
+.logo-holder {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  border-radius: 10px;
+}
+.main-box {
+  background-color: #000;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  border-radius: 10px;
+  color: #fff;
+}
+button:hover{
+  transform: scale(1.01,1.01);
+}
+.top-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000;
+}
+.connect-btn {
+  padding: 1rem 2.5rem;
+  border-radius: 10px;
+  border: none;
+  width: 30rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.balance-text {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.box-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.box-btn {
+  padding: 1rem 2.5rem;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.tab-title {
+  font-weight: bold;
+}
+.nft-btn {
+  width: 60px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+}
+.nft-btn.active {
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  transform: unset;
+
+}
+.nft-op-btn {
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  padding: 0.5rem 0rem;
+}
+@media screen and (max-width: 1200px) {
+  .connect-btn{
+    width: 90%;
+  }
+}
+@media screen and (max-width: 768px) {
+ .top-holder{
+   text-align: center;
+ }
+ .social-holder{
+   justify-content: center !important;
+ }
+ .logo-holder{
+   justify-content: center !important;
+   margin-bottom: 1rem;
+ }
+ .top-text{
+   font-size: 1.2rem;
+ }
+ .main-box{
+   margin-bottom: 1rem;
+ }
+}
+@media screen and (max-width: 580px) {
+.info-holder.left{
+  width: 70%;
+}
+.info-holder.right{
+  width: 25%;
+}
+.top-text{
+  font-size: 1rem;
+}
+.box-text{
+  font-size: 1.2rem;
+}
+}
+.list-holder{
+  max-height: 105px;
+  overflow-y: scroll;
+}
+.list-holder::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.list-holder {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
