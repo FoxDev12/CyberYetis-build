@@ -220,15 +220,12 @@ useEffect(()=>{
       });
       await poolContract.methods.mutantsOfOwner(account).call((error, result) => {
         if (!error) {
-          result && result.map(async (item) => {
-            console.log('here ', item)
-            await poolContract.methods.claimableFrostForMutants(account,item).call((error, res) => {
+            poolContract.methods.claimableFrostForMutants(result).call((error, res) => {
               if (!error) {
                 console.log('yes', res)
-                setMutantsReward(old => old + +(web3.utils.fromWei(res)))
+                setMutantsReward(web3.utils.fromWei(res))
               }
             });
-          })
         }
       });
     }
@@ -293,7 +290,7 @@ useEffect(()=>{
     if (account) {
       console.log(unstakedMutants)
       await poolContract.methods
-        .addMutantsToPool(unstakedMutants, account)
+        .addMutantsToPool(account, unstakedMutants)
         .send(
           { from: account },
           (error, result) => {
