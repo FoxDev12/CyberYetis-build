@@ -78,7 +78,7 @@ useEffect(()=>{
         );
         const poolInstance = new web3.eth.Contract(
         PoolABI,
-        "0xBdA613D0552DF1130ccFa04fd17b3A77f2b3dA6A"
+        "0x0F3608F988243bd86c72041a8e0b126F28d6a13E"
         )
       setContract(contractInstance);
       setNFTContract(nftcontractInstance);
@@ -118,7 +118,7 @@ useEffect(()=>{
         );
         const poolInstance = new web3.eth.Contract(
         PoolABI,
-        "0xBdA613D0552DF1130ccFa04fd17b3A77f2b3dA6A"
+        "0x0F3608F988243bd86c72041a8e0b126F28d6a13E"
         )
       setContract(contractInstance);
       setNFTContract(nftcontractInstance);
@@ -411,7 +411,7 @@ useEffect(()=>{
       if (NFTContract && account) {
         try {
           NFTContract.methods
-            .setApprovalForAll("0x6F8353A25ad9cFA7aEE1Cb8917Ac1351BD3F423B", true)
+            .setApprovalForAll("0x0F3608F988243bd86c72041a8e0b126F28d6a13E", true)
             .send({ from: account }, (error, result) => {
               if (!error) {
 
@@ -437,7 +437,7 @@ useEffect(()=>{
       if (mutantsContract && account) {
         try {
           mutantsContract.methods
-            .setApprovalForAll("0x6F8353A25ad9cFA7aEE1Cb8917Ac1351BD3F423B", true)
+            .setApprovalForAll("0x0F3608F988243bd86c72041a8e0b126F28d6a13E", true)
             .send({ from: account }, (error, result) => {
               if (!error) {
 
@@ -462,7 +462,7 @@ useEffect(()=>{
     if (Contract && account) {
       try {
         Contract.methods
-          .approve("0x6F8353A25ad9cFA7aEE1Cb8917Ac1351BD3F423B", Web3.utils.toWei("20000000000", 'ether'))
+          .approve("0x0F3608F988243bd86c72041a8e0b126F28d6a13E", Web3.utils.toWei("20000000000", 'ether'))
           .send({ from: account }, (error, result) => {
             if (!error) {
 
@@ -484,7 +484,7 @@ useEffect(()=>{
   const checkEnable = async (web3, account) => {
 
     await NFTContract.methods
-      .isApprovedForAll(account, "0x6F8353A25ad9cFA7aEE1Cb8917Ac1351BD3F423B")
+      .isApprovedForAll(account, "0x0F3608F988243bd86c72041a8e0b126F28d6a13E")
       .call((error, result) => {
         if (!error) {
           if (result > 0) {
@@ -497,7 +497,7 @@ useEffect(()=>{
         }
       });
       await mutantsContract.methods
-      .isApprovedForAll(account, "0x6F8353A25ad9cFA7aEE1Cb8917Ac1351BD3F423B")
+      .isApprovedForAll(account, "0x0F3608F988243bd86c72041a8e0b126F28d6a13E")
       .call((error, result) => {
         if (!error) {
           if (result > 0) {
@@ -510,7 +510,7 @@ useEffect(()=>{
         }
       });
       await Contract.methods
-      .allowance(account, "0x6F8353A25ad9cFA7aEE1Cb8917Ac1351BD3F423B")
+      .allowance(account, "0x0F3608F988243bd86c72041a8e0b126F28d6a13E")
       .call((error, result) => {
         if (!error) {
           if (result > web3.utils.toWei("100", 'ether')) {
