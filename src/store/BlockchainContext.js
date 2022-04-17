@@ -66,19 +66,19 @@ useEffect(()=>{
       const web3 = new Web3(process.env.REACT_APP_RPF_NODE);
       const contractInstance = new web3.eth.Contract(
         ABI,
-        "0xdE64d7C22b44c1FA436f48bA3F309d24b7E4665B"
+        "0x4F4aE19018DCFacac87A79E2291b03bD08824B91"
       );
       const nftcontractInstance = new web3.eth.Contract(
         NFTABI,
-        "0xF0A7dC7DA3eeD849bDf78Fc0Fc513E1B4EAC11D5"
+        "0xdeF04BEFdEcbC5d015c8D795Fc81cfF7C5d2fb15"
         );
       const mutantsContractInstance = new web3.eth.Contract(
         NFTABI,
-        "0xfABf2a39A94ADE3c12A0ebF9A70f3cc4E738169A"
+        "0x4740Ff7a9C35c2D100D2cB7d489b166717D9C5A4"
         );
         const poolInstance = new web3.eth.Contract(
         PoolABI,
-        "0x0F3608F988243bd86c72041a8e0b126F28d6a13E"
+        "0xe0253Da5e2Aded56b30c881b2697BdA62A6c05f0"
         )
       setContract(contractInstance);
       setNFTContract(nftcontractInstance);
@@ -106,19 +106,19 @@ useEffect(()=>{
       const account = await web3.eth.getAccounts();
       const contractInstance = new web3.eth.Contract(
         ABI,
-        "0xdE64d7C22b44c1FA436f48bA3F309d24b7E4665B"
+        "0x4F4aE19018DCFacac87A79E2291b03bD08824B91"
       );
       const nftcontractInstance = new web3.eth.Contract(
         NFTABI,
-        "0xF0A7dC7DA3eeD849bDf78Fc0Fc513E1B4EAC11D5"
+        "0xdeF04BEFdEcbC5d015c8D795Fc81cfF7C5d2fb15"
         );
       const mutantsContractInstance = new web3.eth.Contract(
         NFTABI,
-        "0xfABf2a39A94ADE3c12A0ebF9A70f3cc4E738169A"
+        "0x4740Ff7a9C35c2D100D2cB7d489b166717D9C5A4"
         );
         const poolInstance = new web3.eth.Contract(
         PoolABI,
-        "0x0F3608F988243bd86c72041a8e0b126F28d6a13E"
+        "0xe0253Da5e2Aded56b30c881b2697BdA62A6c05f0"
         )
       setContract(contractInstance);
       setNFTContract(nftcontractInstance);
@@ -408,7 +408,7 @@ useEffect(()=>{
       if (NFTContract && account) {
         try {
           NFTContract.methods
-            .setApprovalForAll("0x0F3608F988243bd86c72041a8e0b126F28d6a13E", true)
+            .setApprovalForAll("0xe0253Da5e2Aded56b30c881b2697BdA62A6c05f0", true)
             .send({ from: account }, (error, result) => {
               if (!error) {
 
@@ -434,7 +434,7 @@ useEffect(()=>{
       if (mutantsContract && account) {
         try {
           mutantsContract.methods
-            .setApprovalForAll("0x0F3608F988243bd86c72041a8e0b126F28d6a13E", true)
+            .setApprovalForAll("0xe0253Da5e2Aded56b30c881b2697BdA62A6c05f0", true)
             .send({ from: account }, (error, result) => {
               if (!error) {
 
@@ -459,7 +459,7 @@ useEffect(()=>{
     if (Contract && account) {
       try {
         Contract.methods
-          .approve("0x0F3608F988243bd86c72041a8e0b126F28d6a13E", Web3.utils.toWei("20000000000", 'ether'))
+          .approve("0xe0253Da5e2Aded56b30c881b2697BdA62A6c05f0", Web3.utils.toWei("20000000000", 'ether'))
           .send({ from: account }, (error, result) => {
             if (!error) {
 
@@ -481,7 +481,7 @@ useEffect(()=>{
   const checkEnable = async (web3, account) => {
 
     await NFTContract.methods
-      .isApprovedForAll(account, "0x0F3608F988243bd86c72041a8e0b126F28d6a13E")
+      .isApprovedForAll(account, "0xe0253Da5e2Aded56b30c881b2697BdA62A6c05f0")
       .call((error, result) => {
         if (!error) {
           if (result > 0) {
@@ -494,7 +494,7 @@ useEffect(()=>{
         }
       });
       await mutantsContract.methods
-      .isApprovedForAll(account, "0x0F3608F988243bd86c72041a8e0b126F28d6a13E")
+      .isApprovedForAll(account, "0xe0253Da5e2Aded56b30c881b2697BdA62A6c05f0")
       .call((error, result) => {
         if (!error) {
           if (result > 0) {
@@ -507,7 +507,7 @@ useEffect(()=>{
         }
       });
       await Contract.methods
-      .allowance(account, "0x0F3608F988243bd86c72041a8e0b126F28d6a13E")
+      .allowance(account, "0xe0253Da5e2Aded56b30c881b2697BdA62A6c05f0")
       .call((error, result) => {
         if (!error) {
           if (result > web3.utils.toWei("100", 'ether')) {

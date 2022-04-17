@@ -36,6 +36,10 @@ const TopInfoSection = () => {
                         <a href='https://discord.com/invite/7XqzdyPWH2' target='_blank'><img src='/assets/images/discord.png' height='45' /></a>
                         <a href='https://opensea.io/collection/cyberyetis' target='_blank'><img src='/assets/images/opensea.png' height='45' /></a>
                         <a href='https://polygonscan.com/address/0xc84ac19ee8856a0f2879a6a1dfcd1225a9057088' target='_blank'><img src='/assets/images/matic.svg' height='45' /></a>
+                        <a href='https://lilyetis.github.io' target='_blank'><img src='/assets/images/LilYetis.png' height='45' /></a>
+                        <a href='https://cyberyetis.app/' target='_blank'><img src='/assets/images/Yetis.png' height='45' /></a>
+
+
                     </div>
                 </div>
                 <div className='col-md-6 logo-holder'>
