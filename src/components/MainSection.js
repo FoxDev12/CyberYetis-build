@@ -148,8 +148,8 @@ const MainSection = () => {
                             withdraw()
                         }}>Claim</button>
                     
-                        <p className='box-text'>Daily Reward: 30 $FROST / YETI</p>
-                        <p className='box-text'>You are currently earning: {30 * babiesStaked} $FROST / Day</p>
+                        <p className='box-text'>Daily Reward: 30 $FROST / LILYETI</p>
+                        <p className='box-text'>You are currently earning: {30 * babiesStaked.length} $FROST / Day</p>
                     </div>
                 </div>
                 <div className='col-md-6'>
