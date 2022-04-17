@@ -335,9 +335,10 @@ useEffect(()=>{
   };
 
   const unStake = async (tokenId) => {
+    const tokenIdArray = [tokenId]
     if (account) {
       await poolContract.methods
-        .claimBabiesFromPool(tokenId, true)
+        .claimBabiesFromPool(tokenIdArray, true)
         .send({ from: account }, (error, result) => {
           if (!error) {
           }
@@ -364,9 +365,11 @@ useEffect(()=>{
     }
   };
   const unStakeMutant = async (tokenId) => {
+    const tokenIdArray = [tokenId]
+
     if (account) {
       await poolContract.methods
-        .claimMutantsFromPool(tokenId, true)
+        .claimMutantsFromPool(tokenIdArray, true)
         .send({ from: account }, (error, result) => {
           if (!error) {
           }

@@ -27,8 +27,8 @@ const MainSection = () => {
         constantReward,
         investMutants,
         investAllMutants,
-        unstakeMutant,
-        unstakeAllMutants,
+        unStakeMutant,
+        unStakeAllMutants,
         unstakedMutants
     } = useContext(BlockchainContext);
     const [avticeStake, setActiveStake] = useState()
@@ -86,11 +86,11 @@ const MainSection = () => {
                                 <div className='box-row d-flex flex-wrap w-100 justify-content-evenly'>
                                     <div className='d-flex flex-column align-items-center gap-3'>
                                         <button className='nft-op-btn' onClick={() => {
-                                           unstakeAllMutants()
+                                           unStakeAllMutants()
                                         }}>Unstake all</button>
                                         <p className='tab-title'>your staked MutantYetis</p>
                                         <button className='nft-op-btn' onClick={() => {
-                                            avticeStake && unstakeMutant(+avticeStake)
+                                            avticeStake && unStakeMutant(+avticeStake)
                                         }}>Unstake</button>
                                         <div className='d-flex flex-column align-items-center gap-3 list-holder'>
                                             {
