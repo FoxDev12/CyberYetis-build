@@ -156,7 +156,7 @@ const MainSection = () => {
                         <div className='main-box'>
                             <p className='box-text'>{mutantsStakedByUser.length} staked MutantYetis</p>
                             <p className='box-text'>Pending $FROST Reward {Number(mutantsReward).toFixed(5)}</p>
-                            <p className='box-text'>Chance of loosing NFT on unstaking : 2% </p>
+                            <p className='box-text'>Chance of loosing NFT on unstaking : 5% </p>
                             <button className='box-btn mt-3' onClick={() => withdrawMutants()}>Claim </button>
                             <p className='box-text'>The money lost by LilYetis when claiming goes to mutants</p>
                             <p className='box-text'>Mutants also get LilYetis stolen when unclaiming</p>
