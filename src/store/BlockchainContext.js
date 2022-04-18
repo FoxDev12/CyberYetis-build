@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import Web3 from "web3";
-import Web3Modal from "web3modal";
+import Web3Eth from  'web3-utils';
+ import Web3Modal from "web3modal";
 import { providers } from "../utils/Web3Provider";
 import { ABI, NFTABI, PoolABI } from "../utils/abi";
 import { toast } from "react-toastify";
@@ -103,6 +104,7 @@ useEffect(()=>{
           provider = process.env.REACT_APP_RPF_NODE;
         });
       const web3 = new Web3(provider);
+      setProvider(provider)
       const account = await web3.eth.getAccounts();
       const contractInstance = new web3.eth.Contract(
         ABI,
@@ -169,10 +171,10 @@ useEffect(()=>{
         }
       });
       // Babies staked
-      await poolContract.methods.babiesOfOwner(account).call(async(error, result) => {
+      await poolContract.methods.babiesOfOwner(account).call((error, result) => {
         if (!error) {
           setBabiesStakedByUser(result)
-          await poolContract.methods.frostRate().call((error, rew) => {
+          poolContract.methods.frostRate().call((error, rew) => {
             if (!error) {
               const finalRewardPerday = result * rew
               const displayFixed = Web3.utils.fromWei(rew)
@@ -232,30 +234,40 @@ useEffect(()=>{
   };
 
 
-  const invest = async (tokenId) => {
+  const invest = async (tokenIds) => {
     if (account) {
-      const tokenIdArray = [tokenId]
+      const web3 = new Web3(provider)
+      var price = await web3.eth.getGasPrice()
+      if (price < 30000000000) {
+        price = 30000000000
+      }
       await poolContract.methods
-        .addBabiesToPool(account, tokenIdArray)
+        .addBabiesToPool(account, tokenIds)
         .send(
-          { from: account },
+          { from: account, gasPrice: price },
           (error, result) => {
             if (!error) {
             }
           }
         )
-        
+        .on("receipt", function (receipt) {
+          toast.success("Stake Successfully");
           fetchDataFromContract(web3Instance, account);
+        });
     }
   };
-  const investMutants = async (tokenId) => {
-    const tokenIdArray = [tokenId]
-
+  const investMutants = async (tokenIds) => {
     if (account) {
+      const web3 = new Web3(provider)
+      var price = await web3.eth.getGasPrice()
+      console.log(price)
+      if (price < 30000000000) {
+        price = 30000000000
+      }
       await poolContract.methods
-        .addMutantsToPool(account, tokenIdArray)
+        .addMutantsToPool(account, tokenIds)
         .send(
-          { from: account },
+          { from: account, gasPrice: price },
           (error, result) => {
             if (!error) {
             }
@@ -270,11 +282,16 @@ useEffect(()=>{
 
   const investAll = async () => {
     if (account) {
+      const web3 = new Web3(provider)
+      var price = await web3.eth.getGasPrice()
+      if (price < 30000000000) {
+        price = 30000000000
+      }
       console.log(unstakedBabies)
       await poolContract.methods
         .addBabiesToPool(account, unstakedBabies)
         .send(
-          { from: account },
+          { from: account, gasPrice: price },
           (error, result) => {
             if (!error) {
             }
@@ -288,11 +305,16 @@ useEffect(()=>{
   };
   const investAllMutants = async () => {
     if (account) {
+      const web3 = new Web3(provider)
+      var price = await web3.eth.getGasPrice()
+      if (price < 30000000000) {
+        price = 30000000000
+      }
       console.log(unstakedMutants)
       await poolContract.methods
         .addMutantsToPool(account, unstakedMutants)
         .send(
-          { from: account },
+          { from: account, gasPrice: price },
           (error, result) => {
             if (!error) {
             }
@@ -307,9 +329,14 @@ useEffect(()=>{
 
   const withdraw = async () => {
     if (account) {
+      const web3 = new Web3(provider)
+      var price = await web3.eth.getGasPrice()
+      if (price < 30000000000) {
+        price = 30000000000
+      }
       await poolContract.methods
         .claimBabiesFromPool(babiesStakedByUser, false)
-        .send({ from: account }, (error, result) => {
+        .send({ from: account, gasPrice: price }, (error, result) => {
           if (!error) {
           }
         })
@@ -321,9 +348,14 @@ useEffect(()=>{
   };
   const withdrawMutants = async () => {
     if (account) {
+      const web3 = new Web3(provider)
+      var price = await web3.eth.getGasPrice()
+      if (price < 30000000000) {
+        price = 30000000000
+      }
       await poolContract.methods
         .claimMutantsFromPool(mutantsStakedByUser, false)
-        .send({ from: account }, (error, result) => {
+        .send({ from: account, gasPrice: price }, (error, result) => {
           if (!error) {
           }
         })
@@ -334,12 +366,16 @@ useEffect(()=>{
     }
   };
 
-  const unStake = async (tokenId) => {
-    const tokenIdArray = [tokenId]
+  const unStake = async (tokenIds) => {
+    const web3 = new Web3(provider)
+    var price = await web3.eth.getGasPrice()
+    if (price < 30000000000) {
+      price = 30000000000
+    }
     if (account) {
       await poolContract.methods
-        .claimBabiesFromPool(tokenIdArray, true)
-        .send({ from: account }, (error, result) => {
+        .claimBabiesFromPool(tokenIds, true)
+        .send({ from: account, gasPrice: price }, (error, result) => {
           if (!error) {
           }
         })
@@ -352,9 +388,14 @@ useEffect(()=>{
 
   const unStakeAll = async () => {
     if (account) {
+      const web3 = new Web3(provider)
+      var price = await web3.eth.getGasPrice()
+      if (price < 30000000000) {
+        price = 30000000000
+      }
       await poolContract.methods
         .claimBabiesFromPool(babiesStakedByUser, true)
-        .send({ from: account }, (error, result) => {
+        .send({ from: account, gasPrice: price }, (error, result) => {
           if (!error) {
           }
         })
@@ -364,13 +405,16 @@ useEffect(()=>{
         });
     }
   };
-  const unStakeMutant = async (tokenId) => {
-    const tokenIdArray = [tokenId]
-
+  const unStakeMutant = async (tokenIds) => {
+    const web3 = new Web3(provider)
+    var price = await web3.eth.getGasPrice()
+    if (price < 30000000000) {
+      price = 30000000000
+    }
     if (account) {
       await poolContract.methods
-        .claimMutantsFromPool(tokenIdArray, true)
-        .send({ from: account }, (error, result) => {
+        .claimMutantsFromPool(tokenIds, true)
+        .send({ from: account, gasPrice: price }, (error, result) => {
           if (!error) {
           }
         })
@@ -383,9 +427,14 @@ useEffect(()=>{
 
   const unStakeAllMutants = async () => {
     if (account) {
+      const web3 = new Web3(provider)
+      var price = await web3.eth.getGasPrice()
+      if (price < 30000000000) {
+        price = 30000000000
+      }
       await poolContract.methods
         .claimMutantsFromPool(mutantsStakedByUser, true)
-        .send({ from: account }, (error, result) => {
+        .send({ from: account, gasPrice: price }, (error, result) => {
           if (!error) {
           }
         })
@@ -409,10 +458,15 @@ useEffect(()=>{
   const approveYourself = async () => {
     if (account) {
       if (NFTContract && account) {
+        const web3 = new Web3(provider)
+      var price = await web3.eth.getGasPrice()
+        if (price < 30000000000) {
+          price = 30000000000
+        }
         try {
           NFTContract.methods
             .setApprovalForAll("0xe0253Da5e2Aded56b30c881b2697BdA62A6c05f0", true)
-            .send({ from: account }, (error, result) => {
+            .send({ from: account, gasPrice: price }, (error, result) => {
               if (!error) {
 
               }
@@ -433,12 +487,17 @@ useEffect(()=>{
     }
   };
   const approveMutants = async () => {
+    const web3 = new Web3(provider)
+    var price = await web3.eth.getGasPrice()
+    if (price < 30000000000) {
+      price = 30000000000
+    }
     if (account) {
       if (mutantsContract && account) {
         try {
           mutantsContract.methods
             .setApprovalForAll("0xe0253Da5e2Aded56b30c881b2697BdA62A6c05f0", true)
-            .send({ from: account }, (error, result) => {
+            .send({ from: account, gasPrice: price }, (error, result) => {
               if (!error) {
 
               }
@@ -459,11 +518,16 @@ useEffect(()=>{
     }
   };
   const approveFrost = async() => {
+    const web3 = new Web3(provider)
+    var price = await web3.eth.getGasPrice()
+    if (price < 30000000000) {
+      price = 30000000000
+    }
     if (Contract && account) {
       try {
         Contract.methods
           .approve("0xe0253Da5e2Aded56b30c881b2697BdA62A6c05f0", Web3.utils.toWei("20000000000", 'ether'))
-          .send({ from: account }, (error, result) => {
+          .send({ from: account, gasPrice: price }, (error, result) => {
             if (!error) {
 
             }

@@ -2,8 +2,8 @@ import { useContext, useState } from "react";
 import BlockchainContext from "../store/BlockchainContext";
 
 const InvestBox = () => {
-    const [avticeStake, setActiveStake] = useState()
-    const [activeUnstake, setActiveUnstake] = useState()
+    const [avticeStake, setActiveStake] = useState([])
+    const [activeUnstake, setActiveUnstake] = useState([])
     const {
         handleConnectToWallet,
         account,
@@ -35,6 +35,25 @@ const InvestBox = () => {
         rewardPerday,
         constantReward
     } = useContext(BlockchainContext);
+    const selectedStaked = (item) => {
+        if (avticeStake.includes(item)) {
+          let filtered = avticeStake.filter((i) => i !== item)
+          setActiveStake(filtered)
+        } else {
+          setActiveStake((oldItems) => [...oldItems, item])
+        }
+        console.log("active", avticeStake)
+
+    }
+    const selectedUnstaked = (item) => {
+        if (activeUnstake.includes(item)) {
+          let filtered = activeUnstake.filter((i) => i !== item)
+          setActiveUnstake(filtered)
+        } else {
+          setActiveUnstake((oldItems) => [...oldItems, item])
+        }
+        console.log("active", activeUnstake)
+    }
     return (
         <div className='main-box'>
             <div className='box-row d-flex flex-wrap w-100 justify-content-evenly'>
@@ -44,15 +63,20 @@ const InvestBox = () => {
                     }}>Unstake all</button>
                     <p className='tab-title'>your staked LilYetis</p>
                     <button className='nft-op-btn' onClick={() => {
-                        avticeStake && unStake(+avticeStake)
+                        avticeStake && unStake(avticeStake)
                     }}>Unstake</button>
                     <div className='d-flex flex-column align-items-center gap-3 list-holder'>
                         {
                             babiesStakedByUser.map((item, index) => {
                                 if (item != 0) {
                                     return (
-                                        <button key={index} className={`nft-btn ${avticeStake == +item ? 'active' : ''}`} onClick={() => {
-                                            setActiveStake(item)
+                                        <button key={index} className={`nft-btn ${avticeStake.includes(item) ? 'active' : ''}`} onClick={() => {
+                                            if (avticeStake.length !== 0) {
+                                                selectedStaked(item)
+                                            }
+                                            else {
+                                                setActiveStake([item])
+                                            }                                        
                                         }}>{item}</button>
                                     )
                                 }
@@ -68,13 +92,18 @@ const InvestBox = () => {
                     }}>Stake all</button>
                     <p className='tab-title'>your unstaked LilYetis</p>
                     <button className='nft-op-btn' onClick={() => {
-                        activeUnstake && invest(+activeUnstake)
+                        activeUnstake && invest(activeUnstake)
                     }}>Stake</button>
                     <div className='d-flex flex-column align-items-center gap-3 list-holder'>
                         {
                             unstakedBabies.map((item, index) => (
-                                <button key={index} className={`nft-btn ${activeUnstake == +item ? 'active' : ''}`} onClick={() => {
-                                    setActiveUnstake(item)
+                                <button key={index} className={`nft-btn ${activeUnstake.includes(item) ? 'active' : ''}`} onClick={() => {
+                                    if (avticeStake.length !== 0) {
+                                        selectedUnstaked(item)
+                                    }
+                                    else {
+                                        setActiveUnstake([item])
+                                    }                             
                                 }}>{item}</button>
                             ))
                         }
