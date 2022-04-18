@@ -30,7 +30,7 @@ const TopInfoSection = () => {
                     <h1 className='page-title'>The Cyber Yeti Game</h1>
                     <p className='subtitle'>Welcome to season one of the CyberYeti staking game involving the MutantYeti and LilYeti collections. Make sure to Read the Games whitepaper and understand the risks involved with playing the game.</p>
                     <p className='primary-text'>Stake your LilYetis to earn 30 $FROST a day, however stand a chance to lose your claimed $FROST OR NFT </p>
-                    <p className='primary-text'>Stake your MutantYeti for 100 $frost a day to earn the stolen $FROST and NFTs, but stand a chance of having your nft be burnt FOREVER when unstaking.</p>                
+                    <p className='primary-text'>Stake your MutantYeti for a one time fee of 100 $FROST to earn the stolen $FROST and NFTs, but stand a chance of having your nft be burnt FOREVER when unstaking.</p>                
                     <div className='d-flex flex-wrap align-items-center gap-3 my-4 social-holder'>
                         <a href='https://twitter.com/Cyber_Yetis' target='_blank'><img src='/assets/images/twitter.png' height='45' /></a>
                         <a href='https://discord.com/invite/7XqzdyPWH2' target='_blank'><img src='/assets/images/discord.png' height='45' /></a>
