@@ -57,8 +57,8 @@ const MainSection = () => {
         <div className='container'>
             <div className='row box-row justify-content-between align-items-end mt-3'>
                 <span className='col-md-6 col-sm-6 info-holder left'>
-                    <p className='mb-2 top-text'>{babiesStaked / 100}% LilYetis Staked: </p>
-                    <p className='mb-2 top-text'>{mutantsStaked / 100}% MutantYetis Staked: </p>
+                    <p className='mb-2 top-text'>{((babiesStaked / 10000) *  100).toFixed(2)}% LilYetis Staked: </p>
+                    <p className='mb-2 top-text'>{((mutantsStaked / 3000)  * 100).toFixed(2)}% MutantYetis Staked: </p>
                 </span>
                 <span className='col-md-6 col-sm-6 info-holder right'>
                     <p className='text-end mb-2 col-md-6 top-text ms-auto'>{babiesStaked} /10000</p>
