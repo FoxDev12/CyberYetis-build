@@ -98,7 +98,7 @@ const InvestBox = () => {
                         {
                             unstakedBabies.map((item, index) => (
                                 <button key={index} className={`nft-btn ${activeUnstake.includes(item) ? 'active' : ''}`} onClick={() => {
-                                    if (avticeStake.length !== 0) {
+                                    if (activeUnstake.length !== 0) {
                                         selectedUnstaked(item)
                                     }
                                     else {
